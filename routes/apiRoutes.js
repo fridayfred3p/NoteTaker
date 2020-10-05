@@ -3,8 +3,9 @@
 // We need to include the path package to get the correct file path for our html
 // ===============================================================================
 const path = require("path");
-const db = require("..//db/db.json");
+const db = require("../db/db.json");
 const { v4: uuidv4 } = require('uuid');
+const { notStrictEqual } = require("assert");
 
 // ===============================================================================
 // ROUTING
@@ -24,24 +25,20 @@ module.exports = function(app) {
     const newNoteTitle = req.body.title;
     const newNoteBody = req.body.text;
 
-    db.push({title: newNoteTitle, text: newNoteBody, id: uuidv4()});
-    console.log(db);
+    db.push({ id: uuidv4(), title: newNoteTitle, text: newNoteBody});
+    
     res.json(db);
     
   })
 
-  app.delete("/api/notes/:id"), function(req, res) {
+  app.delete("/api/notes/:id", function(req, res) {
     db.forEach(function(note, index){
-      
-      if (note.id == req.params.id) {
-        db.slice(index);
-        console.log(db);
+
+      if (note.id === req.params.id) {
+        db.splice(index);
+        
         res.json(db);
       };
-    })
-
-  }
-
-
-
+    });
+  });
 };
