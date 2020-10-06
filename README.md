@@ -9,7 +9,7 @@ This application allows the user to create, save, and delete notes in the web br
  * [Usuage](#Usuage)
  * [Contributing](#Contributing)
  * [License](#License)
- * [Contact}(#Contact)
+ * [Contact](#Contact)
 
 ## Installation
 
